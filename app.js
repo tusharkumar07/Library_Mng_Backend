@@ -14,7 +14,10 @@ app.use(bodyParser.json());
 const Table=require('./database/entry');
 
 
-mongoose.connect('mongodb+srv://tusharkumar0510:MI4XsFcNiyuO6GIz@issuebooks.2xwsdza.mongodb.net/?retryWrites=true&w=majority',{ useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }).then(()=>{
+mongoose.connect('mongodb+srv://tusharkumar0510:MI4XsFcNiyuO6GIz@issuebooks.2xwsdza.mongodb.net/?retryWrites=true&w=majority',{useCreateIndex: true, 
+useFindAndModify: false, 
+useNewUrlParser: true, 
+useUnifiedTopology: true }).then(()=>{
     console.log("Connected with DataBase");
 }).catch((err)=>{
     console.log(`Error in connecting Dtabase : ${err}`);

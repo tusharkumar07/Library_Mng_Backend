@@ -7,14 +7,11 @@ const nodemailer=require("nodemailer");
 const apiCse=require("./apiCse.json");
 app.use(cors());
 app.use(bodyParser.json());
-// require('dotenv').config();
-// const user_name = process.env.userName;
-// const app_pass = process.env.appPass;
-// const owener = process.env.Owner;
+require('dotenv').config();
 const Table=require('./database/entry');
 
 
-mongoose.connect('mongodb+srv://tusharkumar0510:MI4XsFcNiyuO6GIz@issuebooks.2xwsdza.mongodb.net/?retryWrites=true&w=majority').then(()=>{
+mongoose.connect(process.env.MONGO_URL).then(()=>{
     console.log("Connected with DataBase");
 }).catch((err)=>{
     console.log(`Error in connecting Dtabase : ${err}`);
@@ -25,7 +22,8 @@ const sendMailInfo=async(mailData,date)=>{
         service:"gmail",
         auth:{
             user:"tusharpathania07@gmail.com",
-            pass:"app pass"
+            
+            pass:process.env.EMAIL_APP_PASS
         }
     })
     let details={
